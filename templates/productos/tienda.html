@@ -1,0 +1,33 @@
+{% extends 'partials/body.html' %}
+{% block contenido %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Bienvenido a mi sitio, {% if user.is_authenticated %} {{ user.username }}
+    {% else %}
+      Visitante 
+    {% endif %}!</strong> Nuestros productos son exclusivos y solo quedan algunas unidades disponibles. 
+  </div>
+<div class="row justify-content-start">
+    <div class="col-8">
+<div class="row row-cols-2 row-cols-md-4 g-2">
+    {% for producto in productos %}
+    <div class="col">
+      <div class="card h-100" >        
+        <img src="{{producto.imagen.url}}" class="card-img-top" alt="{{producto.nombre}}">
+        <div class="card-body">
+          <h5 class="card-title">Nombre: {{producto.nombre}}</h5>
+          <p class="card-text">$ {{producto.valor_venta}} (Precio final)</p>
+          <small class="text-muted">Referencia: {{producto.cod_prod}}</small>                    
+        </div>
+        <div class="card-footer">
+            <a href="{% url 'Add' producto.cod_prod %}" class="btn btn-primary">Agregar al carrito</a>        
+        </div>
+    </div>
+</div>
+    {% endfor %}
+</div>
+</div>
+<div class="col-4">
+    {% include "productos/carrito.html" %}
+</div>
+</div>
+{% endblock contenido %}
