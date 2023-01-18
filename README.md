@@ -1,4 +1,5 @@
 # base
+pip install Django
 
 Es necesario instalar 
 pip install django-bootstrap-v5
