@@ -1,6 +1,16 @@
 from django.shortcuts import render, HttpResponse, redirect
 from productos.models import Producto
 from productos.carrito import Carrito
+from django.db.models import Q
+
+def listar_producutos(request):
+    busqueda = request.GET.get("buscar")
+    productos = Producto.objects.all()
+    if busqueda:
+        productos = Producto.objects.filter(
+            Q(nombre__icontains = busqueda) 
+        ).distinct()  
+    return render(request, "productos/tienda.html", {'productos':productos})
 
 def tienda(request):    
     productos = Producto.objects.all()

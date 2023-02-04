@@ -3,17 +3,18 @@ from django.shortcuts import render, redirect
 from django.template import Template, Context
 from django.views.generic import View 
 from django.contrib.auth import authenticate, login, logout
+from usuarios.forms import SignUpForm
 from django.contrib.auth.forms import UserCreationForm ,PasswordResetForm
 from django.contrib import messages
 
 class VRegistro(View):
 
     def get(self, request):
-        form=UserCreationForm( )
+        form=SignUpForm( )
         return render(request,"usuarios/registro.html",{"form":form})
 
     def post(self, request):
-        form=UserCreationForm(request.POST)
+        form=SignUpForm(request.POST)
 
         if form.is_valid():
 

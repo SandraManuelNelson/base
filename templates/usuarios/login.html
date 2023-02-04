@@ -1,5 +1,15 @@
 {% extends 'partials/body.html' %}
     {% block contenido %}
+    <style id="compiled-css" type="text/css">
+      .password-icon {
+        float: right;
+        position: relative;
+        margin: -25px 10px 0 0;
+        cursor: pointer;
+    }
+
+    /* EOS */
+  </style> 
     <section class="vh-100">
         <div class="container py-5 h-100">
           <div class="row d-flex align-items-center justify-content-center h-100">
@@ -12,14 +22,15 @@
                 {% csrf_token %}
                 <!-- Email input -->
                 <div class="form-outline mb-4">
-                  <input type="text" name="username" class="form-control form-control-lg" />
+                  <input type="text" name="username" class="form-control" />
                   <label class="form-label" >Usuario</label>
                 </div>
       
                 <!-- Password input -->
-                <div class="form-outline mb-4">
-                  <input type="password" name="password" id="form1Example23" class="form-control form-control-lg" />
-                  <label class="form-label" for="form1Example23">Contraseña</label>
+                <div class="form-outline mb-4">           
+                    <input type="password" name="password" class="form-control password1" value="clave" placeholder="" />
+                    <span class="fa fa-fw fa-eye password-icon show-password"></span>
+                    <label class="form-label" >Contraseña</label>
                 </div>
       
                 <div class="d-flex justify-content-around align-items-center mb-4">
@@ -29,16 +40,65 @@
                     <label class="form-check-label" for="form1Example3"> Recordarme </label>
                   </div>
                   <a href="#!">Olvido su Contraseña?</a>
+                
                 </div>
       
                 <!-- Submit button -->
                 <button type="submit" class="btn btn-outline-primary btn-block">Ingresar</button>
                 <a href="{% url 'registro' %}"><button type="button" class="btn btn-outline-success">Registrar</button></a>
+                
+                <!-- Ayuda  -->
+                <!-- Button trigger modal -->
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Ayuda
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ayuda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Este formulario da ingreso al sistema 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>        
+      </div>
+    </div>
+  </div>
+</div>
+                
       
               </form>
             </div>
           </div>
         </div>
       </section>
+      <script>
+        window.addEventListener("load", function() {
+      
+          // icono para poder interaccionar con el elemento
+          showPassword = document.querySelector('.show-password');
+          showPassword.addEventListener('click', () => {
+      
+            // elementos input de tipo password
+            password1 = document.querySelector('.password1');
+    
+      
+            if ( password1.type === "text" ) {
+              password1.type = "password"
+              
+              showPassword.classList.remove('fa-eye-slash');
+            } else {
+              password1.type = "text"
+             
+              showPassword.classList.toggle("fa-eye-slash");
+            }
+        })
+      });
+      </script>
 
 {% endblock contenido %}
