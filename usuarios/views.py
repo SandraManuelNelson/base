@@ -1,3 +1,5 @@
+from django.conf import settings
+from django.core.mail import EmailMultiAlternatives
 from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.template import Template, Context
@@ -6,6 +8,37 @@ from django.contrib.auth import authenticate, login, logout
 from usuarios.forms import SignUpForm
 from django.contrib.auth.forms import UserCreationForm ,PasswordResetForm
 from django.contrib import messages
+from django.core.mail import EmailMessage
+from usuarios.forms import FormularioContacto
+
+
+# Create your views here.
+
+def contacto(request):
+    formulario_contacto=FormularioContacto()
+
+    if request.method=="POST":
+        formulario_contacto=FormularioContacto(data=request.POST)
+        if formulario_contacto.is_valid():
+            nombre=request.POST.get("nombre")
+            email=request.POST.get("email")
+            contenido=request.POST.get("contenido")
+
+
+            email=EmailMessage("Mensaje desde App Django",
+            "El usuario con nombre {} con la dirección {} escribe lo siguiente:\n\n {}".format(nombre,email,contenido),
+            "",["aquí la dirección del destinatario"],reply_to=[email])
+            
+            try:
+                email.send()
+               
+                return redirect("/usuarios/contacto/?valido")
+            except:
+                return redirect("/usuarios/contacto/?novalido")
+
+
+    return render(request, "usuarios/contacto.html", {'miFormulario':formulario_contacto})
+
 
 class VRegistro(View):
 

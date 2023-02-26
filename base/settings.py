@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -152,3 +153,10 @@ BOOTSTRAP5 = {
     "javascript_in_head": True,
     }
 CRISPY_TEMPLATE_PACK="bootstrap5"
+# configuracion del correo
+EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'cjsd06301978'
+EMAIL_HOST_PASSWORD = 'familiasolanomartinez'
+EMAIL_USE_TLS = True
