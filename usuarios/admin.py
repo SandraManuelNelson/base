@@ -1,7 +1,7 @@
 from django.contrib import admin
 from usuarios.models import Municipio, Departamento, Categoria, Artesano
 
-admin.site.site_header = 'Administracion ASOARTE STORE'
+admin.site.site_header = 'ASOARTE STORE'
 
 class AdminMunicipios(admin.ModelAdmin):
     list_display = ["nombre"]

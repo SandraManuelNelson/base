@@ -161,3 +161,13 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'cjsd06301978'
 EMAIL_HOST_PASSWORD = 'familiasolanomartinez'
 EMAIL_USE_TLS = True
+# configuracion Jazzmin 
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Asoarte",
+    # Welcome text on the login screen
+    "welcome_sign": "Bienvenido a Asoarte",
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "/img/logo_1.png",
+
+}
