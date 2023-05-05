@@ -1,7 +1,8 @@
 from django.contrib import admin
+from import_export.admin import ExportActionMixin
 from productos.models import Producto, Devolucion
 
-class AdminProducto(admin.ModelAdmin):
+class AdminProducto(ExportActionMixin, admin.ModelAdmin):
     list_display = ["nombre"]
     search_fields = ["nombre"]
     class Meta:

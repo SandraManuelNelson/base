@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,6 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -152,3 +154,20 @@ BOOTSTRAP5 = {
     "javascript_in_head": True,
     }
 CRISPY_TEMPLATE_PACK="bootstrap5"
+# configuracion del correo
+EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'cjsd06301978'
+EMAIL_HOST_PASSWORD = 'familiasolanomartinez'
+EMAIL_USE_TLS = True
+# configuracion Jazzmin 
+JAZZMIN_SETTINGS = {
+    # title of the window (Will default to current_admin_site.site_title if absent or None)
+    "site_title": "Asoarte",
+    # Welcome text on the login screen
+    "welcome_sign": "Bienvenido a Asoarte",
+    # Logo to use for your site, must be present in static files, used for brand on top left
+    "site_logo": "/img/logo_1.png",
+
+}

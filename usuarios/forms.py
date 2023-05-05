@@ -9,3 +9,9 @@ class SignUpForm(UserCreationForm):
     class Meta:
         model = User
         fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2', )
+
+class FormularioContacto(forms.Form):
+    
+    nombre=forms.CharField(label="Nombre", required=True)    
+    email=forms.CharField(label="Email", required=True)
+    contenido=forms.CharField(label="Contenido", widget=forms.Textarea)
